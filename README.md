@@ -8,7 +8,5 @@ watchdogs are silicon-level (same i.MX RT1062 as the Teensy 4.x), and the
 library has no board-specific code. Builds clean for `teensy:avr:mimxrt1060evkb`.
 
 Verified in the i.MX RT1062 QEMU `mimxrt1060-evk` model: arming `WDT_T4<WDT1>`
-and not feeding it triggers the watchdog timeout action. (Two QEMU-model
-caveats, not library issues: feeding via the WSR service does not yet refresh
-the modelled timer, and a watchdog *reset* action does not re-run the firmware
-in emulation — both are tracked against the QEMU model, not this library.)
+resets the chip on timeout, feeding it (the WSR service sequence) keeps the
+system alive, and a watchdog *reset* reboots the firmware.
